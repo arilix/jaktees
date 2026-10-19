@@ -1,0 +1,1 @@
+import{q as e,B as s}from"./index-CyguuSzS.js";const r=({error:t})=>e.jsxs("div",{className:"mx-auto max-w-3xl px-4 py-24 text-center",children:[e.jsx("h1",{className:"text-display text-5xl mb-3",children:"Blog offline."}),e.jsx("p",{className:"text-muted-foreground mb-6",children:t.message}),e.jsx(s,{to:"/",children:"← Back home"})]});export{r as errorComponent};

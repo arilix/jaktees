@@ -1,0 +1,207 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Bebas Neue";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/bebas-neue-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/barlow-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/barlow-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/barlow-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/barlow-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Barlow";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/barlow-900.woff2") format("woff2");
+}
+
+:root {
+  --radius: 0.25rem;
+  --paper: #fafafa;
+  --ink: #060606;
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: #fff;
+  --card-foreground: var(--ink);
+  --popover: #fff;
+  --popover-foreground: var(--ink);
+  --primary: #e5041a;
+  --primary-foreground: #fff;
+  --secondary: #121212;
+  --secondary-foreground: #fff;
+  --muted: #f2f2f2;
+  --muted-foreground: #4d4d4d;
+  --accent: #e5041a;
+  --accent-foreground: #fff;
+  --highlight: #e5041a;
+  --highlight-foreground: #fff;
+  --destructive: #e5041a;
+  --destructive-foreground: #fff;
+  --border: var(--ink);
+  --input: #e4e4e4;
+  --ring: var(--primary);
+  --shadow-brutal: 6px 6px 0 0 var(--ink);
+  --shadow-brutal-sm: 3px 3px 0 0 var(--ink);
+  --shadow-brutal-lg: 10px 10px 0 0 var(--ink);
+  --shadow-brutal-orange: 6px 6px 0 0 var(--primary);
+  --shadow-red-glow: 0 0 60px -10px color-mix(in oklab, var(--primary) 80%, transparent);
+}
+
+@theme inline {
+  --font-sans: "Barlow", system-ui, sans-serif;
+  --font-display: "Bebas Neue", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.01em;
+    line-height: 0.9;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-weight: 500;
+  }
+}
+
+@utility shadow-brutal {
+  box-shadow: var(--shadow-brutal);
+}
+@utility shadow-brutal-sm {
+  box-shadow: var(--shadow-brutal-sm);
+}
+@utility shadow-brutal-lg {
+  box-shadow: var(--shadow-brutal-lg);
+}
+@utility shadow-brutal-orange {
+  box-shadow: var(--shadow-brutal-orange);
+}
+@utility border-brutal {
+  border: 3px solid var(--color-foreground);
+}
+@utility border-brutal-thick {
+  border: 5px solid var(--color-foreground);
+}
+/* Unlayered on purpose: in the source it is emitted after the leading-* utilities, so its
+   line-height wins even when a heading also carries leading-[0.85]. */
+.text-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  line-height: 0.9;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate(0);
+  }
+  to {
+    transform: translate(-50%);
+  }
+}
+.animate-marquee {
+  animation: 22s linear infinite marquee;
+}
+
+/* Scroll-reveal states (the source uses framer-motion whileInView) */
+html.js [data-reveal]:not([data-in]) {
+  opacity: 0;
+}
+html.js [data-reveal="up"]:not([data-in]) {
+  transform: translateY(40px);
+}
+html.js [data-reveal="right"]:not([data-in]) {
+  transform: translateX(40px);
+}
+html.js [data-reveal="scale"]:not([data-in]) {
+  transform: scale(0.9);
+}
+html.js [data-reveal="pop"]:not([data-in]) {
+  transform: scale(0);
+}
+[data-reveal] {
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+[data-reveal="pop"] {
+  transition:
+    opacity 0.3s ease-out,
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    transition: none;
+  }
+}
+
+@keyframes float-a {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+@keyframes float-b {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 8px; }
+}
+.animate-float-a { animation: float-a 4s ease-in-out infinite; }
+.animate-float-b { animation: float-b 5s ease-in-out infinite; }
+.blog-content{color:var(--color-foreground);font-size:1.0625rem;line-height:1.75}.blog-content>*+*{margin-top:1.15em}.blog-content h2{font-family:var(--font-display);text-transform:uppercase;margin-top:2em;font-size:clamp(1.75rem,4vw,2.5rem);line-height:.95}.blog-content h3{font-family:var(--font-display);text-transform:uppercase;margin-top:1.6em;font-size:clamp(1.35rem,3vw,1.75rem)}.blog-content p{margin-bottom:0}.blog-content a{color:var(--color-primary);text-underline-offset:3px;font-weight:700;text-decoration:underline}.blog-content ul{padding-left:1.4em;list-style:outside}.blog-content ol{padding-left:1.4em;list-style:decimal}.blog-content li{margin-top:.4em}.blog-content blockquote{border-left:6px solid var(--color-primary);padding:.25em 0 .25em 1em;font-size:1.15em;font-weight:700}.blog-content img{border:3px solid var(--color-foreground);box-shadow:var(--shadow-brutal-sm);max-width:100%}.blog-content pre{background:var(--color-foreground);color:var(--color-background);border:3px solid var(--color-foreground);padding:1em;overflow-x:auto}.blog-content code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}.blog-content hr{border:0;border-top:4px solid var(--color-foreground);margin:2em 0}.blog-content strong{font-weight:900}.blog-content .is-editor-empty:first-child:before{content:attr(data-placeholder);color:var(--color-muted-foreground);float:left;pointer-events:none;height:0}.blog-content .ProseMirror:focus{outline:none}
